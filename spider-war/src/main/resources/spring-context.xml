@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:etc/config.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.connection.driver_class}"></property>
+		<property name="url" value="${jdbc.connection.url}"></property>
+		<property name="username" value="${jdbc.connection.username}"></property>
+		<property name="password" value="${jdbc.connection.password}"></property>
+		<property name="maxActive" value="${dbcp.maxActive}"></property>
+		<property name="maxIdle" value="${dbcp.maxIdle}"></property>
+		<property name="maxWait" value="${dbcp.maxWait}"></property>
+		<property name="defaultAutoCommit" value="${dbcp.autoCommot}"></property>
+		<!-- <property name="validationQuery " value="select 1"></property> -->
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mbase/mybatis-config.xml"></property>
+	</bean>
+
+	<!-- 配置sqlSessionTemplate -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean id="processEngineConfiguration"
+		class="org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="databaseType" ref="mysql"/>
+		<property name="databaseSchemaUpdate" ref="false"/>
+		<!-- <property name="mailServerHost" value="mail.my-corp.com" /> <property 
+			name="mailServerPort" value="5025" /> -->
+	</bean>
+
+</beans>
