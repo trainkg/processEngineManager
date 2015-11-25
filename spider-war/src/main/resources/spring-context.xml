@@ -42,13 +42,22 @@
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
-	<bean id="processEngineConfiguration"
-		class="org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration">
-		<property name="dataSource" ref="dataSource"/>
-		<property name="databaseType" ref="mysql"/>
-		<property name="databaseSchemaUpdate" ref="false"/>
-		<!-- <property name="mailServerHost" value="mail.my-corp.com" /> <property 
-			name="mailServerPort" value="5025" /> -->
+	<bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+		<property name="dataSource" ref="dataSource" />
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="databaseSchemaUpdate" value="false" />
+		<property name="jobExecutorActivate" value="false" />
+		<property name="databaseType" ref="mysql" />
 	</bean>
+
+	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+		<property name="processEngineConfiguration" ref="processEngineConfiguration" />
+	</bean>
+
+	<bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService" />
+	<bean id="runtimeService" factory-bean="processEngine" factory-method="getRuntimeService" />
+	<bean id="taskService" factory-bean="processEngine" factory-method="getTaskService" />
+	<bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService" />
+	<bean id="managementService" factory-bean="processEngine" factory-method="getManagementService" />
 
 </beans>

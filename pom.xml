@@ -38,6 +38,11 @@
 			<artifactId>lombok</artifactId>
 			<version>1.16.4</version>
 		</dependency>
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-spring</artifactId>
+			<version>5.19.0</version>
+		</dependency>
 	</dependencies>
 	<repositories>
 		<repository>
@@ -45,4 +50,18 @@
 			<url>https://maven.alfresco.com/nexus/content/groups/public/</url>
 		</repository>
 	</repositories>
+	<profiles>
+		<profile>
+			<id>JDK1.7</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<jdk>1.7</jdk>
+			</activation>
+			<properties>
+				<maven.compiler.source>1.7</maven.compiler.source>
+				<maven.compiler.target>1.7</maven.compiler.target>
+				<maven.compiler.compilerVersion>1.7</maven.compiler.compilerVersion>
+			</properties>
+		</profile>
+	</profiles>
 </project>
