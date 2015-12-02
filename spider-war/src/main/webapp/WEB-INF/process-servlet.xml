@@ -13,8 +13,7 @@
         http://www.springframework.org/schema/aop 
         http://www.springframework.org/schema/aop/spring-aop.xsd
         ">
-	<context:component-scan base-package="com.zsq.watch.web,com.zsq.*.resource" use-default-filters="false">
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	<context:component-scan base-package="org.zsq.spider,org.zsq.atciviti.controller">
 	</context:component-scan>
 	
 	<mvc:annotation-driven>
@@ -32,9 +31,9 @@
 						<property name="failOnEmptyBeans" value="false" />
 					</bean>
 				</property>
-				<!-- <property name="supportedMediaTypes">
+				<property name="supportedMediaTypes">
 					<value>text/plain;charset=UTF-8</value>
-				</property> -->
+				</property>
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
