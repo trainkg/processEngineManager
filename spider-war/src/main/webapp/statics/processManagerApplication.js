@@ -15,8 +15,25 @@ require([
 		 */
 		initComponent:function(){
 			var config = {el:'#processManagerCenter',title:'测试'};
-			this.panel =  new Window(config);
-			this.panel.render();
+			var panel =  new Window(config);
+			
+			var panel1 =  new Window();
+			var panel2 =  new Window({
+					resize : false,
+					type : 'border', // border | flow | flexgrid | grid
+					vgap : 4,		 
+					hgap : 4,		 
+					westWt:20,
+					southHt:50,
+					eastWt:20,
+					showNorth:false,
+					showWest:false
+			});
+			panel.render();
+			panel.addBorderComponent('center',panel1);
+			panel.addBorderComponent('east',panel2);
+//			panel.addBorderComponent('south',panel3);
+//			panel.addBorderComponent('west',panel4);
 		}
 	});
 	
