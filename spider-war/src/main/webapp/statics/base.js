@@ -6,9 +6,10 @@ function getContextPath() {
     return result;
 }
 
+
 var rconfig = {
 	//所有模块的查找根路径。
-	baseUrl : '/zsq',
+	baseUrl : getContextPath()+'/zsq',
 	waitSeconds: 7,
 	// RequireJS获取资源时附加在URL后面的额外的query参数。作为浏览器或服务器未正确配置时的“cache bust”手段很有用。使用cache bust配置的一个示例：
 	urlArgs: 'v.1.0.0',
@@ -38,7 +39,11 @@ var rconfig = {
 		'echarts':'zsq/echart/echarts',
 		'echarts/chart/line':'zsq/echart/echarts',
 		'pdfobject':'zsq/pdf/pdfobject',
-		'iCheck':'plugins/icheck/icheck.min'
+		'iCheck':'plugins/icheck/icheck.min',
+		'jquery.parser':'jquery.parser',
+		'jquery.menu':'jquery.menu',
+		'jquery.resizable':'jquery.resizable',
+		'jquery.draggable':'jquery.draggable'
 	},
 	map: {
         '*': {
@@ -108,6 +113,22 @@ var rconfig = {
 		'iCheck':{
 			deps:['jquery'],
 			exports:'$.fn.iCheck'
+		},
+		'jquery.parser':{
+			deps:['jquery'],
+			exports:'jQuery'
+		},
+		'jquery.menu':{
+			deps:['jquery','jquery.parser'],
+			exports:'jQuery'
+		},
+		'jquery.resizable':{
+			deps:['jquery'],
+			exports:'jQuery'
+		},
+		'jquery.draggable':{
+			deps:['jquery'],
+			exports:'jQuery'
 		}
 	}
 };
