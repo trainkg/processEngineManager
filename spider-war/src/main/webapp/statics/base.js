@@ -6,7 +6,6 @@ function getContextPath() {
     return result;
 }
 
-
 var rconfig = {
 	//所有模块的查找根路径。
 	baseUrl : getContextPath()+'/zsq',
@@ -43,7 +42,9 @@ var rconfig = {
 		'jquery.parser':'jquery.parser',
 		'jquery.menu':'jquery.menu',
 		'jquery.resizable':'jquery.resizable',
-		'jquery.draggable':'jquery.draggable'
+		'jquery.draggable':'jquery.draggable',
+		'linkbutton':'jquery.linkbutton',
+		'tabs':'jquery.tabs'
 	},
 	map: {
         '*': {
@@ -127,6 +128,14 @@ var rconfig = {
 			exports:'jQuery'
 		},
 		'jquery.draggable':{
+			deps:['jquery'],
+			exports:'jQuery'
+		},
+		'linkbutton':{
+			deps:['jquery'],
+			exports:'jQuery'
+		},
+		'tabs':{
 			deps:['jquery'],
 			exports:'jQuery'
 		}

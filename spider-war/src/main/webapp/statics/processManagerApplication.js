@@ -5,8 +5,9 @@ require([
          'backbone',
          'underscore',
          'core/layout',
-         'app/applicationTopNav'
-     ],function(Backbone,_,Window,TopNav){
+         'app/applicationTopNav',
+         'app/content'
+     ],function(Backbone,_,Window,TopNav,Content){
 	var controller  = Backbone.Router.extend({
 		initialize:function(){
 			this.initComponent();
@@ -28,7 +29,8 @@ require([
 			panel.render();
 			var topNav = new TopNav();
 			panel.addBorderComponent('north',topNav);
-//			panel.addBorderComponent('east',panel2);
+			panel.addBorderComponent('center',new Content());
+			//panel.addBorderComponent('west',new Content());
 		}
 	});
 	

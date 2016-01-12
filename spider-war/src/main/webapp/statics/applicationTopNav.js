@@ -12,11 +12,9 @@ define(['backbone','core/menuButton','core/menu','jquery','underscore','text!./f
 			var config = {buttons:[{
 				name:'测试一号BUTTON',
 				menu:new Menu({
-					template:$('#mm',$temples)[0].outerHTML
-				}),
-				onClick:function(item){
-					console.log(item.id);
-				}
+					template:$('#mm',$temples)[0].outerHTML,
+					onClick:function(item){}
+				})
 			},
 			{
 				name:'测试二号BUTTON',
@@ -25,7 +23,7 @@ define(['backbone','core/menuButton','core/menu','jquery','underscore','text!./f
 				})
 			}]}
 			this.menuButton = new MenuButton(config);
-			tpls = null;
+			$temples = null;
 		},
 		render:function(){
 			this.menuButton.setElement(this.$el).render();
