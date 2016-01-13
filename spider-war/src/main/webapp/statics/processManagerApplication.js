@@ -5,9 +5,11 @@ require([
          'backbone',
          'underscore',
          'core/layout',
+         'core/panel',
          'app/applicationTopNav',
          'app/content'
-     ],function(Backbone,_,Window,TopNav,Content){
+         
+     ],function(Backbone,_,Window,Panel,TopNav,Content){
 	var controller  = Backbone.Router.extend({
 		initialize:function(){
 			this.initComponent();
@@ -30,7 +32,7 @@ require([
 			var topNav = new TopNav();
 			panel.addBorderComponent('north',topNav);
 			panel.addBorderComponent('center',new Content());
-			//panel.addBorderComponent('west',new Content());
+			panel.addBorderComponent('west',new Panel());
 		}
 	});
 	
