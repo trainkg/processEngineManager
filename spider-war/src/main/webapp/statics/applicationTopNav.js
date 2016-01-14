@@ -1,15 +1,14 @@
 /*
  * 导航菜单
  */
-define(['backbone','core/menuButton','core/menu','jquery','underscore','text!./ftl/tmenu.html'],function(Backbone,MenuButton,Menu,$,_,template){
+define(['backbone','core/menuButton','core/menu','jquery','underscore','text!./ftl/tmenu.html','core/panel','text!./ftl/top.html'],function(Backbone,MenuButton,Menu,$,_,template,Panel,topFtl){
 	var topNav = Backbone.View.extend({
 		menuButton:null,
 		initialize:function(){
 			this.initNav();
-		},
-		initNav:function(){
+			
 			var $temples = $(template);
-			var config = {buttons:[{
+			var config = {buttonCls:'btn-xs btn-success', buttons:[{
 				name:'测试一号BUTTON',
 				menu:new Menu({
 					template:$('#mm',$temples)[0].outerHTML,
@@ -18,15 +17,28 @@ define(['backbone','core/menuButton','core/menu','jquery','underscore','text!./f
 			},
 			{
 				name:'测试二号BUTTON',
-				menu:new Menu({
-					template:$('#mm1',$temples)[0].outerHTML
+				menu:new Menu({template:$('#mm1',$temples)[0].outerHTML
 				})
-			}]}
-			this.menuButton = new MenuButton(config);
+			}]};
+			
+			var menuButton = this.menuButton = new MenuButton(config);
+			
+			this._panel = new Panel({
+				usePanel:false,
+				decorate:{
+					template:topFtl,
+					contentSelect:'.process-main-top'
+				},
+				view:menuButton
+			});
+			
 			$temples = null;
 		},
+		initNav:function(){
+			
+		},
 		render:function(){
-			this.menuButton.setElement(this.$el).render();
+			this._panel.setElement(this.$el).render();
 		}
 	});
 	return topNav;
