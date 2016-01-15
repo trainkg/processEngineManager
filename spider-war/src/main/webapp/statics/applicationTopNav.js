@@ -8,17 +8,22 @@ define(['backbone','core/menuButton','core/menu','jquery','underscore','text!./f
 			this.initNav();
 			
 			var $temples = $(template);
-			var config = {buttonCls:'btn-xs btn-success', buttons:[{
+			var config = {buttonCls:'btn-xs btn-primary', 
+			mouseoverToggle:true,		
+			buttons:[{
 				name:'测试一号BUTTON',
 				menu:new Menu({
 					template:$('#mm',$temples)[0].outerHTML,
 					onClick:function(item){}
 				})
+				,split:true
 			},
 			{
 				name:'测试二号BUTTON',
-				menu:new Menu({template:$('#mm1',$temples)[0].outerHTML
+				menu:new Menu({
+					template:$('#mm1',$temples)[0].outerHTML
 				})
+				,split:true
 			}]};
 			
 			var menuButton = this.menuButton = new MenuButton(config);

@@ -8,8 +8,10 @@ define([
          'core/panel',
          'app/applicationTopNav',
          'app/content',
-         'text!./ftl/footer.html'
-     ],function(Backbone,_,Window,Panel,TopNav,Content,footer){
+         'text!./ftl/footer.html',
+         'core/accordion',
+         'text!./ftl/accNav.html',
+     ],function(Backbone,_,Layout,Panel,TopNav,Content,footer,Accordion,actemplate){
 	var controller  = Backbone.Router.extend({
 		initialize:function(){
 			this.initComponent();
@@ -19,13 +21,21 @@ define([
 		 */
 		initComponent:function(){
 			var config = {el:'#processManagerCenter',title:'测试'};
-			var panel =  new Window(config);
+			var panel =  new Layout(config);
 			panel.render();
 			var topNav = new TopNav();
 			panel.addBorderComponent('north',topNav);
 			panel.addBorderComponent('center',new Content());
-			panel.addBorderComponent('west',new Panel({title:'test'}));
-			panel.addBorderComponent('east',new Panel({title:'我的附导航'}));
+			var acConfig = {
+				template:actemplate	
+			};
+			var ac = new Accordion(acConfig);
+			var p3 = new Panel({title:'导航栏',cls:'panel-info',usePanel:true,tools:[{
+		        iconCls:'glyphicon glyphicon-arrow-left',
+		        handler:function(e){}
+		    }],view:ac});
+			panel.addBorderComponent('west',p3);
+			panel.addBorderComponent('east',new Panel({title:'我的附导航',cls:'panel-info'}));
 			panel.addBorderComponent('south',new Panel({template:footer}));
 		}
 	});

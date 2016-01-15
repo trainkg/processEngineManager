@@ -10,7 +10,6 @@ define(['backbone','jquery','underscore','core/tabs','text!app/ftl/tabs.html'],f
 			this.tabs = new Tabs(props);
 		},
 		render:function(){
-			
 			this.tabs.setElement(this.$el);
 			this.tabs.render();
 			this.tabs.addComponent({
