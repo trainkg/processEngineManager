@@ -11,7 +11,8 @@ define([
          'text!./ftl/footer.html',
          'core/accordion',
          'text!./ftl/accNav.html',
-     ],function(Backbone,_,Layout,Panel,TopNav,Content,footer,Accordion,actemplate){
+         'core/context'
+     ],function(Backbone,_,Layout,Panel,TopNav,Content,footer,Accordion,actemplate,ZSQ){
 	var controller  = Backbone.Router.extend({
 		initialize:function(){
 			this.initComponent();
@@ -27,7 +28,7 @@ define([
 			panel.addBorderComponent('north',topNav);
 			panel.addBorderComponent('center',new Content());
 			var acConfig = {
-				template:actemplate	
+				template:actemplate
 			};
 			var ac = new Accordion(acConfig);
 			var p3 = new Panel({title:'导航栏',cls:'panel-info',usePanel:true,tools:[{

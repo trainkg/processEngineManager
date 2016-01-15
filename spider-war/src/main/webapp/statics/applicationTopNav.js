@@ -1,11 +1,25 @@
 /*
  * 导航菜单
  */
-define(['backbone','core/menuButton','core/menu','jquery','underscore','text!./ftl/tmenu.html','core/panel','text!./ftl/top.html'],function(Backbone,MenuButton,Menu,$,_,template,Panel,topFtl){
+define(['backbone',
+        'core/menuButton',
+        'core/menu',
+        'jquery',
+        'underscore',
+        'text!./ftl/tmenu.html',
+        'core/panel',
+        'text!./ftl/top.html'
+        ,'core/dialog'
+        ],function(Backbone,MenuButton,Menu,$,_,template,Panel,topFtl,Dialog){
 	var topNav = Backbone.View.extend({
 		menuButton:null,
 		initialize:function(){
 			this.initNav();
+			
+			//init dialog
+			
+			var config = {'title':'对话框'};
+			var dialog = new Dialog(config);
 			
 			var $temples = $(template);
 			var config = {buttonCls:'btn-xs btn-primary', 
@@ -14,7 +28,13 @@ define(['backbone','core/menuButton','core/menu','jquery','underscore','text!./f
 				name:'测试一号BUTTON',
 				menu:new Menu({
 					template:$('#mm',$temples)[0].outerHTML,
-					onClick:function(item){}
+					onClick:function(item){
+						if(!dialog.renderState){
+							dialog.render();
+						}else{
+							dialog.show();
+						}
+					}
 				})
 				,split:true
 			},
