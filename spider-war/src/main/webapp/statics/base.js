@@ -46,7 +46,8 @@ var rconfig = {
 		'jqlinkbutton':'jquery.linkbutton',
 		'jqtabs':'jquery.tabs',
 		'jqpanel':'jquery.panel',
-		'jqaccordion':'jquery.accordion'
+		'jqaccordion':'jquery.accordion',
+		'jqwindow':'jquery.window'
 	},
 	map: {
         '*': {
@@ -74,10 +75,6 @@ var rconfig = {
 			deps:['jquery'],
 			exports : 'jQuery'
 		},
-		/*'keditor':{
-			deps:['jquery','keditor-zh'],
-			exports :'keditor'
-		},*/
 		'jquery-validate':{
 			deps:['jquery'],
 			exports:'jQuery'
@@ -147,6 +144,10 @@ var rconfig = {
 		},
 		'jqaccordion':{
 			deps:['jquery','jqpanel'],
+			exports:'jQuery'
+		},
+		'jqwindow':{
+			deps:['jquery','jqpanel','jquery.draggable','jquery.resizable'],
 			exports:'jQuery'
 		}
 	}

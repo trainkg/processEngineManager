@@ -27,14 +27,9 @@ define([
 			var topNav = new TopNav();
 			panel.addBorderComponent('north',topNav);
 			panel.addBorderComponent('center',new Content());
-			var acConfig = {
-				template:actemplate
-			};
+			var acConfig = {template:actemplate};
 			var ac = new Accordion(acConfig);
-			var p3 = new Panel({title:'导航栏',cls:'panel-info',usePanel:true,tools:[{
-		        iconCls:'glyphicon glyphicon-arrow-left',
-		        handler:function(e){}
-		    }],view:ac});
+			var p3 = new Panel({title:'导航栏',cls:'panel-info',usePanel:true,view:ac});
 			panel.addBorderComponent('west',p3);
 			panel.addBorderComponent('east',new Panel({title:'我的附导航',cls:'panel-info'}));
 			panel.addBorderComponent('south',new Panel({template:footer}));

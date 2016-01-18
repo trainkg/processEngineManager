@@ -10,6 +10,7 @@ define(['backbone',
         'core/panel',
         'text!./ftl/top.html'
         ,'core/dialog'
+        ,'core/window'
         ],function(Backbone,MenuButton,Menu,$,_,template,Panel,topFtl,Dialog){
 	var topNav = Backbone.View.extend({
 		menuButton:null,
