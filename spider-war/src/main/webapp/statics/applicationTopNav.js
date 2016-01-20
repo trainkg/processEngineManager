@@ -29,11 +29,7 @@ define(['backbone',
 				menu:new Menu({
 					template:$('#mm',$temples)[0].outerHTML,
 					onClick:function(item){
-						if(!dialog.renderState){
-							dialog.render();
-						}else{
-							dialog.show();
-						}
+						dialog.render();
 					}
 				})
 				,split:true

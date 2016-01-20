@@ -21,7 +21,7 @@ define([
 		 * 初始化页面组件 
 		 */
 		initComponent:function(){
-			var config = {el:'#processManagerCenter',title:'测试'};
+			var config = {el:'#processManagerCenter'};
 			var panel =  new Layout(config);
 			panel.render();
 			var topNav = new TopNav();
@@ -36,6 +36,7 @@ define([
 		}
 	});
 	
-	new controller();
+	var Application = new controller();
 	Backbone.history.start();
+	return Application;
 });
