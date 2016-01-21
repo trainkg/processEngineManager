@@ -1,4 +1,6 @@
 package org.zsq.atciviti.controller;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @RequestMapping
 @Controller
+@Slf4j
 public class ApplicationController {
 	
 	/**
@@ -16,6 +19,7 @@ public class ApplicationController {
 	 */
 	@RequestMapping("app")
 	public String gotoMainApp(){
+		log.info("登陆系统~");
 		return "main";
 	}
 }

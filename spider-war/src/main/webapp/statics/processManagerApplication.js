@@ -6,7 +6,7 @@ define([
          'underscore',
          'core/layout',
          'core/panel',
-         'app/applicationTopNav',
+         'app/topNav',
          'app/content',
          'text!./ftl/footer.html',
          'core/accordion',
