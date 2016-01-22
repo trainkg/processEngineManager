@@ -1,7 +1,7 @@
 /*
  * TAB 内容区
  */
-define(['backbone','jquery','underscore','core/tabs','text!app/ftl/tabs.html'],function(Backbone,$,_,Tabs,template){
+define(['backbone','jquery','underscore','core/tabs','text!app/ftl/tabs.html','./grids'],function(Backbone,$,_,Tabs,template,Grids){
 	var cotent = Backbone.View.extend({
 		initialize:function(){
 			var props = {
@@ -15,7 +15,7 @@ define(['backbone','jquery','underscore','core/tabs','text!app/ftl/tabs.html'],f
 			this.tabs.addComponent({
 				title:'App',
 				closable:true
-			});
+			},new Grids());
 		}
 	});
 	return cotent;
