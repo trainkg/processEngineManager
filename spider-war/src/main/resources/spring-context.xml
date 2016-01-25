@@ -42,13 +42,26 @@
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
+	<bean id="RestResponseFactory" class="org.activiti.rest.service.api.RestResponseFactory"></bean>
+	<bean id="ContentTypeResolver" class="org.activiti.rest.common.application.DefaultContentTypeResolver"></bean>
+	<bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper"></bean>
+
 	<bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
 		<property name="dataSource" ref="dataSource" />
-		<property name="transactionManager" ref="transactionManager" />
-		<property name="databaseSchemaUpdate" value="true" />
-		<property name="jobExecutorActivate" value="false" />
 		<property name="databaseType" value="mysql" />
-		<!-- 自动发布 -->
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="databaseSchemaUpdate" value="false" />
+		<property name="mailServerHost" value="localhost" />
+		<property name="mailServerPort" value="5025" />
+		<property name="jobExecutorActivate" value="false" />
+        <property name="customFormTypes">
+          <list>
+            <bean class="org.activiti.rest.form.UserFormType"/>
+            <bean class="org.activiti.rest.form.ProcessDefinitionFormType"/> 
+            <bean class="org.activiti.rest.form.MonthFormType"/>   
+          </list>
+        </property>
+        <!-- 自动发布 -->
 		<property name="deploymentResources"
    			 value="classpath*:/org/activiti/spring/test/autodeployment/autodeploy.*.bpmn20.xml" />
 	</bean>
@@ -56,11 +69,13 @@
 	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
 		<property name="processEngineConfiguration" ref="processEngineConfiguration" />
 	</bean>
-
-	<bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService" />
-	<bean id="runtimeService" factory-bean="processEngine" factory-method="getRuntimeService" />
-	<bean id="taskService" factory-bean="processEngine" factory-method="getTaskService" />
-	<bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService" />
-	<bean id="managementService" factory-bean="processEngine" factory-method="getManagementService" />
+  
+    <bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService" />
+    <bean id="runtimeService" factory-bean="processEngine" factory-method="getRuntimeService" />
+    <bean id="taskService" factory-bean="processEngine" factory-method="getTaskService" />
+    <bean id="formService" factory-bean="processEngine" factory-method="getFormService" />
+    <bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService" />
+    <bean id="managementService" factory-bean="processEngine" factory-method="getManagementService" />
+    <bean id="identityService" factory-bean="processEngine" factory-method="getIdentityService" />
 
 </beans>

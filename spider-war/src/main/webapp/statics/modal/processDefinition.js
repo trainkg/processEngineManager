@@ -1,13 +1,18 @@
 /*
  * Activiti Process Definition Model 
  */
-defined(['./core/context','backbone','underscore'],function(ZSQ,Backbone,_){
-	
+define(['core/context','backbone','underscore'],function(ZSQ,Backbone,_){
+	if(!ZSQ.modal.processDefinition){ZSQ.modal.processDefinition = {}}
 	var pdm = ZSQ.modal.processDefinition; 
 	
-	pdm.definitions = Backbone.Modal.extend({
-		url:'service/repository/process-definitions'
+	pdm.definitions = Backbone.Model.extend({
+		url:'/repository/process-definitions'
 	});
 	
+	var modal = new pdm.definitions();
+	modal.fetch();
+	modal.on("sync",function(){
+		console.log(this.toJSON());
+	})
 	return ZSQ;
 })

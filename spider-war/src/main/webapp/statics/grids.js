@@ -1,7 +1,10 @@
 /*
  * 模拟数据表格
  */
-define(['backbone','jquery','underscore','jqgrid/js/i18n/grid.locale-cn','jqgrid/js/grid.formedit','css!jqgrid/css/ui.jqgrid-bootstrap'],function(Backbone,$,_){
+define(['backbone','jquery','underscore','jqgrid/js/i18n/grid.locale-cn','jqgrid/js/grid.formedit',
+        'css!jqgrid/css/ui.jqgrid-bootstrap',
+        './modal/processDefinition'
+        ],function(Backbone,$,_){
 	
 	var grid = Backbone.View.extend({
 		render:function(){
@@ -62,7 +65,8 @@ define(['backbone','jquery','underscore','jqgrid/js/i18n/grid.locale-cn','jqgrid
 	                {
 	                    errorTextFormat: function (data) {
 	                        return 'Error: ' + data.responseText
-	                    }
+	                    },
+	                    jqModal:false
 	                });
 			    
 			$(document).on('zsq.border.resize',function(){

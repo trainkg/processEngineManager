@@ -134,5 +134,10 @@
   		<artifactId>javaee-web-api</artifactId>
   		<version>7.0</version>
   	</dependency>
+  	<dependency>
+  		<groupId>org.activiti</groupId>
+  		<artifactId>activiti-rest</artifactId>
+  		<version>5.19.0</version>
+  	</dependency>
   </dependencies>
 </project>
