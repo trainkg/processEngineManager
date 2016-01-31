@@ -21,7 +21,8 @@ define([
 		 * 初始化页面组件 
 		 */
 		initComponent:function(){
-			var config = {el:'#processManagerCenter'};
+			var config = {el:'#processManagerCenter',showEast:false};
+			//
 			var panel =  new Layout(config);
 			panel.render();
 			var topNav = new TopNav();
@@ -31,7 +32,7 @@ define([
 			var ac = new Accordion(acConfig);
 			var p3 = new Panel({title:'导航栏',cls:'panel-info',usePanel:true,view:ac});
 			panel.addBorderComponent('west',p3);
-			panel.addBorderComponent('east',new Panel({title:'我的附导航',cls:'panel-info'}));
+			//panel.addBorderComponent('east',new Panel({title:'我的附导航',cls:'panel-info'}));
 			panel.addBorderComponent('south',new Panel({template:footer}));
 		}
 	});

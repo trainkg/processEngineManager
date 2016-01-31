@@ -10,7 +10,7 @@ define(['core/context','backbone','underscore'],function(ZSQ,Backbone,_){
 	});
 	
 	var modal = new pdm.definitions();
-	modal.fetch();
+	//modal.fetch();
 	modal.on("sync",function(){
 		console.log(this.toJSON());
 	})
